@@ -1,8 +1,8 @@
 <template>
   <div class="marquee-wrap">
     <div class="marquee-content">
-      <div class="scroll_div">
-        <pre class="scroll_begin">无限滚动-如果内容宽度大于外层元素的宽度则进行滚动</pre>
+      <div class="scroll_div" @mouseover="mouseover" @mouseout="mouseout">
+        <pre class="scroll_begin">无限滚动-如果内容宽度大于外层元素的宽度则进行滚动无限滚动-如果内容宽度大于外层元素的宽度则进行滚动</pre>
         <pre class="scroll_end" style="display:none;"></pre>
       </div>
     </div>
@@ -15,7 +15,8 @@ export default {
     return {
       scroll_div: "",
       scroll_begin: "",
-      scroll_end: ""
+      scroll_end: "",
+      MyMar:null
     };
   },
   mounted() {
@@ -31,9 +32,8 @@ export default {
     // 文字横向滚动
     ScrollImgLeft() {
       let speed = 15; // 滚动速度
-      let MyMar = null; // 计时器
       this.scroll_end.innerText = this.scroll_begin.innerText;
-      MyMar = setInterval(this.Marquee, speed);
+      this.MyMar = setInterval(this.Marquee, speed);
     },
     Marquee() {
         // console.log(this.scroll_end.offsetWidth,this.scroll_div.scrollLeft)
@@ -42,7 +42,16 @@ export default {
         } else {
           this.scroll_div.scrollLeft++;
         }
+    },
+    mouseover(){
+      clearInterval(this.MyMar);
+    },
+    mouseout(){
+      if (this.scroll_begin && this.scroll_begin.offsetWidth > this.scroll_div.offsetWidth) {
+        this.ScrollImgLeft();
+        this.scroll_end.style.display = "inline-block";
       }
+    }
   }
 };
 </script>
@@ -54,12 +63,11 @@ export default {
 }
 .marquee-wrap {
   box-sizing: border-box;
-  width: 324px;
-  height: 64px;
-  padding: 20px;
+  width: 400px;
+  height: 45px;
   margin: 16px auto 30px;
   background-image: linear-gradient(140deg, #ebd9eb 0%, #13bfdd 100%);
-  line-height: 24px;
+  line-height: 45px;
   font-size: 24px;
   text-align: center;
   border-radius: 32px;

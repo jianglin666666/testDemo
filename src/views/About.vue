@@ -5,14 +5,12 @@
        <img src="../assets/1.jpg" alt="">
     </a>
     <table-test> </table-test>
-    <my-test> </my-test>
     <echarts-test></echarts-test>
   </div>
 </template>
 
 <script>
 import TableTest from '@/components/TableTest.vue'
-import MyTest from '@/components/Mytest.vue'
 import EchartsTest from '@/components/EchartsTest'
 import HelloWorld from '@/components/HelloWorld.vue'
 

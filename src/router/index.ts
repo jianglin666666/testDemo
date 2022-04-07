@@ -85,6 +85,10 @@ const routes: Array<RouteConfig> = [
     path: '/seamlessScroll',
     name: 'seamlessScroll',
     component:() => import('../components/seamlessScroll.vue')
+  },{
+    path: '/demoTest',
+    name: 'demoTest',
+    component:() => import('../components/demoTest.vue')
   }
 ]
 const router = new VueRouter({
