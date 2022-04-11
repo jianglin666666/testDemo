@@ -1,7 +1,7 @@
 <template>
   <div class="test-container">
-    {{message}}
-    <input type="text" v-model="data"/>
+    {{message}} {{computedMsg}}
+    <input type="text" v-model="data.name"/>
     <input type="button" value="点击触发父级方法" @click="bindSend"/>
     <input type="button" value="点击触发父级方法" @click="handleSend"/>
     <input type="button" value="点击触发父级方法" @click="bindSend2"/>
@@ -20,7 +20,9 @@ import Hello from "./HelloWorld.vue";
 export default class Test extends Vue {
   // 原有data中的数据在这里展开编写
  public message: string = "asd";
- public data: string = "hello world";
+ public data: object = {
+   name:'chengjianlin'
+ };
   //原有props中的数据展开编写
   @Prop({
     type: Number,
@@ -44,10 +46,11 @@ export default class Test extends Vue {
       console.log('propA值改变了' + newValue);
   }
   @Watch('data',{
-      deep:true
+      deep:true,
+      immediate: true
   })
   public dataChange(newValue:string,oldValue:string){
-      console.log('data值改变了' + newValue);
+      console.log('data值改变了', newValue);
   }
   // 以前需要给父级传值的时候直接方法中使用emit就行了，当前需要通过emit来处理
   @Emit()
