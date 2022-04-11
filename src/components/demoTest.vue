@@ -87,10 +87,7 @@ export default {
         // 元素自增距离顶部1像素
         bodyWrapper.scrollTop++;
         // 判断元素是否滚动到底部(可视高度+距离顶部=整个高度)
-        if (
-          bodyWrapper.clientHeight + bodyWrapper.scrollTop ==
-          bodyWrapper.scrollHeight
-        ) {
+        if ( bodyWrapper.clientHeight + bodyWrapper.scrollTop == bodyWrapper.scrollHeight) {
           // 重置table距离顶部距离
           bodyWrapper.scrollTop = 0;
         }
