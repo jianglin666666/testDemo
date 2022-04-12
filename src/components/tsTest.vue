@@ -55,6 +55,9 @@ export default class Test extends Vue {
   // 以前需要给父级传值的时候直接方法中使用emit就行了，当前需要通过emit来处理
   @Emit()
   private bindSend():string{
+    this.$router.push({
+      path:`/demoTest`
+    })
       return this.message
   }
   @Emit()
