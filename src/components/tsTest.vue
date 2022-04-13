@@ -50,7 +50,8 @@ export default class Test extends Vue {
       immediate: true
   })
   public dataChange(newValue:string,oldValue:string){
-      console.log('data值改变了', newValue);
+      console.log('新值', newValue);
+      console.log('旧值', oldValue);
   }
   // 以前需要给父级传值的时候直接方法中使用emit就行了，当前需要通过emit来处理
   @Emit()
