@@ -63,18 +63,18 @@ export default {
   },
   methods: {
     activateEv(index) {
-      console.log(index)
+      console.log("activateEv",index)
       // this.$store.dispatch('rect/setActive', {id: index});
     },
     // 当前缩放的元素索引
     deactivateEv(index) {
-      console.log(index)
+      console.log("deactivateEv",index)
       // this.$store.dispatch('rect/unsetActive', {id: index});
     },
     
     // 拖动的位置
     changePosition(newRect, index) {
-      console.log(newRect,index)
+      console.log("changePosition",newRect,index)
       // this.$store.dispatch('rect/setTop', {id: index, top: newRect.top});
       // this.$store.dispatch('rect/setLeft', {id: index, left: newRect.left});
       // this.$store.dispatch('rect/setWidth', {id: index, width: newRect.width});
@@ -82,7 +82,7 @@ export default {
     },
     // 改变拉伸的大小
     changeSize(newRect, index) {
-      console.log(newRect,index)
+      console.log("changeSize",newRect,index)
       // this.$store.dispatch('rect/setTop', {id: index, top: newRect.top});
       // this.$store.dispatch('rect/setLeft', {id: index, left: newRect.left});
       // this.$store.dispatch('rect/setWidth', {id: index, width: newRect.width});
