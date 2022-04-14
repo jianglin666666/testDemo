@@ -1,0 +1,118 @@
+### vue-drag-resize
+1、isActive 是否激活状态
+//处于激活状态的组件才能进行拖拽与缩放等操作，状态呈现激活状态
+Type: Boolean || Required: false || Default: false
+
+2、isDraggable 是否允许拖拽
+Type: Boolean || Required: false || Default: true
+
+3、isResizable 是否允许缩放
+Type: Boolean || Required: false || Default: true
+
+4、w 组件宽度
+Type: Number || Required: false || Default: 200
+
+5、h 组件高度
+Type: Number || Required: false || Default: 200
+
+6、minw 最小宽度
+//注意，不能设置为0，因为这个组件里面属性要求大于0
+Type: Number || Required: false || Default: 50
+
+7、minh 最小高度
+//注意，不能设置为0，因为这个组件里面属性要求大于0
+Type: Number || Required: false || Default: 50
+
+8、x 定位left
+Type: Number || Required: false || Default: 0
+
+9、y 定位top
+Type: Number || Required: false || Default: 0
+
+10、z 层级
+//注意在元素激活的时候，z会被设置为最高的，所以在管理z的时候要注意
+Type: Number || Required: false || Default: auto
+
+11、sticks 元素缩放的节点定义
+Type: Array || Required: false || Default: ['tl', 'tm', 'tr', 'mr', 'br', 'bm', 'bl', 'ml']
+tl - Top left
+tm - Top middle
+tr - Top right
+mr - Middle right
+br - Bottom right
+bm - Bottom middle
+bl - Bottom left
+ml - Middle left
+
+12、preventActiveBehavior 单击组件外区域来禁止组件行为
+//设置这个属性true，就可以解决在其他区域操作返回到组件区域的时候，不需要再次点击就激活组件
+Type: Boolean || Required: false || Default: false
+
+13、parentLimitation 是否超出父级元素
+Type: Boolean || Required: false || Default: false
+//设置为true，则限制操作组件不能超出父级元素
+
+14、parentW 父级宽度
+Type: Number || Required: false || Default: 0
+//该值限制了元素可以拖动的水平最大宽度，前提是parentLimitation=true
+
+15、parentH 父级高度
+Type: Number || Required: false || Default: 0
+//该值限制了元素可以拖动的水平最大高度，前提是parentLimitation=true
+
+16、parentScaleX
+Type: Number || Required: false || Default: 1
+
+17、parentScaleY
+Type: Number || Required: false || Default: 1
+
+18、axis 允许拖拽的方向，
+//取值可以为x、 y、 both、none
+Type: String || Required: false || Default: both
+
+19、dragHandle 定义拖拽时的classname
+Type: String || Required: false
+
+20、dragCancel 定义取消拖拽时的classname
+Type: String || Required: false
+
+//事件
+21、clicked 组件点击事件
+Required: false || Parameters: 组件实例
+
+22、activated 点击组件外事件
+Required: false || Parameters: 无
+
+23、resizing 缩放时事件
+Required: false || Parameters: object
+{
+    left: Number, //the X position of the component
+    top: Number, //the Y position of the component
+    width: Number, //the width of the component
+    height: Number //the height of the component
+}
+
+24、resizestop 缩放结束
+//object 同resizing的object
+Required: false || Parameters: object
+
+25、dragging 拖拽时事件
+//object 同resizing的object
+Required: false || Parameters: object
+
+26、dragstop 拖拽结束事件
+Required: false || Parameters: object
+object 同resizing的object
+
+27、issues
+在拖拽元素里面添加input等类似的表单性元素，无法正常点击操作，特别是focus无法做到，click也是经常失效
+
+//vue-drag-resize 的设计问题，在元素内部只能触发本元素，如果是有表单元素，只能被动的触发；解决：
+ <vue-drag-resize @activated="activateEv(index)" />
+ activateEv(index) {
+    console.log('activateEv' + index);
+    this.$refs['drag-input'].focus();
+  }
+
+怎么修改使点击组件外面后，不需要点击组件才能进行？
+:preventActiveBehavior="true" 设置这个属性，禁用点击组件外事件

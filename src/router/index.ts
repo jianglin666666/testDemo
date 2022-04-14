@@ -93,6 +93,10 @@ const routes: Array<RouteConfig> = [
     path: '/calendarDemo',
     name: 'calendarDemo',
     component:() => import('../components/calendarDemo.vue')
+  },{
+    path: '/vueDragDemo',
+    name: 'vueDragDemo',
+    component:() => import('../components/vueDragDemo.vue')
   }
 ]
 const router = new VueRouter({

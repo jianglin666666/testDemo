@@ -49,6 +49,7 @@ export default class Test extends Vue {
       deep:true,
       immediate: true
   })
+  //newValue、oldValue值一样
   public dataChange(newValue:string,oldValue:string){
       console.log('新值', newValue);
       console.log('旧值', oldValue);
@@ -56,8 +57,12 @@ export default class Test extends Vue {
   // 以前需要给父级传值的时候直接方法中使用emit就行了，当前需要通过emit来处理
   @Emit()
   private bindSend():string{
+    // this.$router.push({
+    //   path:`/demoTest`
+    // })
     this.$router.push({
-      path:`/demoTest`
+      name: 'demoTest',
+      params:{username:'James2022'}
     })
       return this.message
   }
