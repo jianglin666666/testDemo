@@ -97,6 +97,10 @@ const routes: Array<RouteConfig> = [
     path: '/vueDragDemo',
     name: 'vueDragDemo',
     component:() => import('../components/vueDragDemo.vue')
+  },{
+    path: '/richTextDemo',
+    name: 'richTextDemo',
+    component:() => import('../components/richTextDemo.vue')
   }
 ]
 const router = new VueRouter({

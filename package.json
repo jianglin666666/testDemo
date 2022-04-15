@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@types/echarts": "^4.6.4",
+    "@wangeditor/editor": "^5.0.0",
+    "@wangeditor/editor-for-vue": "^1.0.0",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "echarts": "^5.1.2",
