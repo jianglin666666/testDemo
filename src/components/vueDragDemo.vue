@@ -25,10 +25,11 @@
                 v-on:resizing="resizeNode($event, index)"
             >
                 <!-- <img src="../assets/1.jpg" height="100%" width="100%" /> -->
-                <div style="width:100%;height:100%;border:1px solid blue;"></div>
+                <div style="width:100%;height:100%;border:1px solid blue;text-align:center;line-height:150px;"
+                 :style="{backgroundColor:getcolor(),color:'#fff'}">{{index + 1}}</div>
             </vue-drag-resize>
         </div>
-      <button @click="exportJson" style="position:absolute;bottom:10px;left:50%;">导出</button>
+      <button @click="exportJson" style="position:absolute;bottom:10px;left:50%;">导出JSON</button>
     </div>
 </template>
 <script>
@@ -61,7 +62,8 @@ export default {
         'aspectRatio': false,
         'zIndex': 1,
         'color': '#EF9A9A',
-        'active': false
+        'active': false,
+        'name':'one'
       },{
         'width': 200,
         'height': 150,
@@ -77,9 +79,18 @@ export default {
         'aspectRatio': false,
         'zIndex': 1,
         'color': '#EF9A9A',
-        'active': false
+        'active': false,
+        'name':'two'
       }]
     };
+  },
+  computed:{
+    bgColor:function(){
+      let r = Math.floor(Math.random()*256)
+      let g = Math.floor(Math.random()*256)
+      let b = Math.floor(Math.random()*256)
+      return `rgb(${r},${g},${b})`  
+    }
   },
   mounted() {
   },
@@ -107,11 +118,15 @@ export default {
       // this.$store.dispatch('rect/setHeight', {id: index, height: newRect.height});
     },
     exportJson(){
-        this.$nextTick(()=>{
-            let strObj = ''
-            strObj = JSON.stringify(this.rects,null,2)
-            console.log(strObj)
-        })
+      let strObj = ''
+      strObj = JSON.stringify(this.rects,null,2)
+      console.log(strObj)
+    },
+    getcolor(){
+      let r = Math.floor(Math.random()*256)
+      let g = Math.floor(Math.random()*256)
+      let b = Math.floor(Math.random()*256)
+      return `rgb(${r},${g},${b})`
     }
   }
 };

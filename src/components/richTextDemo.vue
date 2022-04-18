@@ -31,7 +31,7 @@ export default Vue.extend({
   data() {
     return {
       editor: null,
-      html: "<p>hello</p>",
+      html: null,
       toolbarConfig: {},
       editorConfig: { 
           placeholder: "请输入内容..."
