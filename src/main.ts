@@ -15,6 +15,9 @@ Vue.prototype.$echarts = echarts;
 import scroll from 'vue-seamless-scroll';
 Vue.use(scroll)
 
+import dataV from '@jiaminghi/data-view'
+Vue.use(dataV)
+
 new Vue({
   router,
   store,

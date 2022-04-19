@@ -101,6 +101,10 @@ const routes: Array<RouteConfig> = [
     path: '/richTextDemo',
     name: 'richTextDemo',
     component:() => import('../components/richTextDemo.vue')
+  },{
+    path: '/dataViewTest',
+    name: 'dataViewTest',
+    component:() => import('../components/dataViewTest.vue')
   }
 ]
 const router = new VueRouter({

@@ -25,7 +25,7 @@
                 v-on:resizing="resizeNode($event, index)"
             >
                 <!-- <img src="../assets/1.jpg" height="100%" width="100%" /> -->
-                <div style="width:100%;height:100%;border:1px solid blue;text-align:center;line-height:150px;"
+                <div :ref="`box${index+1}`" style="width:100%;height:100%;border:1px solid blue;text-align:center;line-height:150px;"
                  :style="{backgroundColor:getcolor(),color:'#fff'}">{{index + 1}}</div>
             </vue-drag-resize>
         </div>
@@ -111,7 +111,13 @@ export default {
       this.rects[index].height = newRect.height
       this.rects[index].top = newRect.top
       this.rects[index].left = newRect.left
-      console.log("changePosition",newRect,index)
+      console.log("changePosition",newRect,index,this.$refs.box1)
+      if(index === 0){
+        this.$refs.box1[0].style.lineHeight = newRect.height + 'px'
+      }
+      if(index === 1){
+        this.$refs.box2[0].style.lineHeight = newRect.height + 'px'
+      }
       // this.$store.dispatch('rect/setTop', {id: index, top: newRect.top});
       // this.$store.dispatch('rect/setLeft', {id: index, left: newRect.left});
       // this.$store.dispatch('rect/setWidth', {id: index, width: newRect.width});
