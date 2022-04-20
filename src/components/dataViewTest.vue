@@ -1,5 +1,5 @@
 <template>
-  <div style="display:flex;">
+  <div style="display:flex;background:#040428;">
     <div>
       <dv-border-box-1 style="width:550px;height:280px;">
         <div>
@@ -8,11 +8,11 @@
       </dv-border-box-1>
     </div>
     <div style="margin-left:30px;">
-      <dv-border-box-8 style="width:550px;height:280px;">
+      <dv-border-box-13 style="width:550px;height:280px;">
         <div>
           <dv-scroll-ranking-board :config="rankConfig" style="width:500px;height:250px;margin:0 auto;padding-top:20px;" />
         </div>
-      </dv-border-box-8>
+      </dv-border-box-13>
     </div>
   </div>
 </template>
@@ -82,8 +82,6 @@ export default {
 }
 </script>
 
-<style>
-body {
-  background: #040428;
-}
+<style scoped>
+
 </style>
