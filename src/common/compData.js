@@ -15,6 +15,8 @@ import elementTable from '../components/elementTable.vue'
 import testMap from '../components/testMap.vue'
 import timeLine from '../components/timeLine.vue'
 import stepsDemo from '../components/stepsDemo.vue'
+import gridLayout from '../components/gridLayout.vue'
+import calendarDemo from '../components/calendarDemo.vue'
 
 const components = [
     { name:"dataViewTest", component: dataViewTest},
@@ -34,5 +36,7 @@ const components = [
     { name:"testMap", component: testMap},
     { name:"timeLine", component: timeLine},
     { name:"stepsDemo", component: stepsDemo},
+    { name:"gridLayout", component: gridLayout},
+    { name:"calendarDemo", component: calendarDemo},
 ]
 export default components
