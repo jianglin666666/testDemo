@@ -22,16 +22,24 @@
         <el-table-column prop="address" label="地址" align="center">
         </el-table-column>
       </el-table>
+      <div style="margin-top:30px;">
+        <div style="width:250px;height:250px;border:1px solid #ccc;">
+          <img :src="imgData" style="width:100%;height:100%;">
+        </div>
+        <ImgCutter @cutDown="cutDown"></ImgCutter>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import scrollDemo from "@/components/scrollDemo.vue";
+import ImgCutter from 'vue-img-cutter'
 export default {
   name: "demoTest",
   components: {
-    scrollDemo
+    scrollDemo,
+    ImgCutter
   },
   data() {
     return {
@@ -81,23 +89,7 @@ export default {
       ],
       listWidth: 0,
       listHeight: 0,
-      rects: [{
-        'width': 200,
-        'height': 150,
-        'top': 10,
-        'left': 10,
-        'draggable': true,
-        'resizable': true,
-        'minw': 100,
-        'minh': 100,
-        'axis': 'both',
-        'parentLim': true,
-        'snapToGrid': false,
-        'aspectRatio': false,
-        'zIndex': 1,
-        'color': '#EF9A9A',
-        'active': false
-      }]
+      imgData:''
     };
   },
   mounted() {
@@ -108,6 +100,14 @@ export default {
     });
     this.roll();
     // this.roll2()
+  },
+  watch:{
+    $route:{
+      handler:function(val,oldValue){
+        console.log(val,oldValue)
+      },
+      deep:true
+    }
   },
   methods: {
     roll() {
@@ -153,6 +153,10 @@ export default {
       } else {
         return "success-row";
       }
+    },
+    cutDown(e){
+      console.log("11111",e)
+      this.imgData = e.dataURL
     }
   }
 };
