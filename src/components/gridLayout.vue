@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="container">
     <div class="box1 foo">1</div>
     <div class="box2 foo">2</div>
@@ -7,6 +8,17 @@
     <div class="box5 foo">5</div>
     <div class="box6 foo">6</div>
   </div>
+  <div>
+      <div class="header">
+        <span id="span"> 这里是展示区 </span> 
+        <img src="../assets/展开-下.png" class="showImg" ref="showImg"  @click="showCase" id="button">
+      </div>
+      <div class="case-item" ref="case">
+          内容展示
+          <img src="../assets/展开-上.png" class="closeImg" ref="closeImg"  @click="showCase">
+      </div>
+  </div>
+</div>
   <!-- <div style="width:600px;">
     <h1>Simple float example</h1>
     <div class="box">Float</div>
@@ -28,13 +40,70 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      displayFlag:false
+    };
   },
 
-  methods: {}
+  methods: {
+    showCase(){
+      if(!this.displayFlag){
+        console.log(this.$refs.case.style)
+        this.$refs.case.style.height = "300px"
+        this.$refs.case.style.width = "200px"
+        this.$refs.case.style.opacity = 1
+        this.$refs.showImg.style.opacity = 0
+        this.displayFlag = true
+      }else{
+        this.displayFlag = false
+        this.$refs.case.style.height = "0px"
+        this.$refs.case.style.width = "200px"
+        this.$refs.case.style.opacity = 0
+        this.$refs.showImg.style.opacity = 1
+      }
+    }
+  }
 };
 </script>
 <style scoped>
+.header {
+  width: 200px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: #fff;
+  background: rgb(243, 200, 207);
+  margin: 0 auto;
+  position: relative;
+}
+.case-item {
+  border: 1px solid rgb(89, 228, 89);
+  background: rgb(89, 228, 89);
+  color: #fff;
+  text-align: center;
+  opacity: 0;
+  transition: all 1s linear;
+  position: relative;
+  margin: 0 auto;
+  height: 0px;
+  line-height: 300px;
+  width: 200px;
+}
+.showImg {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  top: 35px;
+  left: 43%;
+  transition: all 1.5s;
+}
+.closeImg {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  bottom:-15px;
+  left: 43%;
+}
 .box {
     float: left;
     width: 150px;
