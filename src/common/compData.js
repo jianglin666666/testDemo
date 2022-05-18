@@ -17,6 +17,7 @@ import timeLine from '../components/timeLine.vue'
 import stepsDemo from '../components/stepsDemo.vue'
 import gridLayout from '../components/gridLayout.vue'
 import calendarDemo from '../components/calendarDemo.vue'
+import tableTest from '../components/TableTest.vue'
 
 const components = [
     { name:"dataViewTest", component: dataViewTest},
@@ -38,5 +39,6 @@ const components = [
     { name:"stepsDemo", component: stepsDemo},
     { name:"gridLayout", component: gridLayout},
     { name:"calendarDemo", component: calendarDemo},
+    { name:"tableTest", component: tableTest},
 ]
 export default components

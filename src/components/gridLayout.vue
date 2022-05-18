@@ -18,6 +18,11 @@
           <img src="../assets/展开-上.png" class="closeImg" ref="closeImg"  @click="showCase">
       </div>
   </div>
+  <div class="father-box">
+    <div style="background:blue;" class="test-box1">1</div>
+    <div style="background:green;" class="test-box2">2</div>
+  </div>
+  <div style="width:300px;height:200px;background:yellow;" v-move:left="object" @click="changeColor">自定义指令</div>
 </div>
   <!-- <div style="width:600px;">
     <h1>Simple float example</h1>
@@ -41,10 +46,23 @@
 export default {
   data() {
     return {
-      displayFlag:false
+      displayFlag:false,
+      object:{
+        left:300,
+        color:'red'
+      }
     };
   },
-
+  directives:{
+    // bind 和 update 时触发相同行为的简写形式
+    move: function (el,binding,vnode,oldNode){
+        el.style.position = 'relative'
+        el.style.color = '#fff'
+        el.style.background = binding.value.color
+        let s = (binding.arg == 'left' ? 'left' : 'top')
+        el.style[s] = binding.value.left + 'px'
+    }
+  },
   methods: {
     showCase(){
       if(!this.displayFlag){
@@ -61,6 +79,13 @@ export default {
         this.$refs.case.style.opacity = 0
         this.$refs.showImg.style.opacity = 1
       }
+    },
+    changeColor(){
+      let r = Math.floor(Math.random()*256)
+      let g = Math.floor(Math.random()*256)
+      let b = Math.floor(Math.random()*256)
+      this.object.color = `rgb(${r},${g},${b})`
+      this.object.left = Math.random()*300
     }
   }
 };
@@ -244,4 +269,33 @@ export default {
   text-align: center;
   color: #fff;
 }
+.father-box {
+  perspective:1000;
+  transform-style:preserve-3d;
+  position:relative;
+}
+.test-box1, .test-box2 {
+  transition: all 0.6s;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:250px;
+  height:150px;
+}
+.test-box1 {
+  transform: rotateX(0deg);
+}
+.test-box2 {
+  transform: rotateX(180deg);
+}
+.father-box:hover .test-box1 {
+  transform: rotateX(-180deg);
+}
+.father-box:hover .test-box2 {
+  transform: rotateX(0deg);
+}
+
+
+
 </style>

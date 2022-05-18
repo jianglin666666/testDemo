@@ -21,7 +21,8 @@ export default {
     mounted(){
         this.compName = this.$route.params.name
         console.log(this.$route)
-        this.style1 = `top: 0px; left: 0px; width: ${this.width}px; height: ${this.height}px;`
+        // this.style1 = `top: 0px; left: 0px; width: ${this.width}px; height: ${this.height}px;`
+        this.style1 = `top: 0px; left: 0px;`
     }
 }
 </script>
