@@ -1,60 +1,61 @@
 <template>
-  <div>
-    <el-card class="box-card"  v-waterMarker="{text:'cjl版权所有',textColor:'rgba(180, 180, 180, 0.8)'}">
-      <div slot="header" class="clearfix">
-        <span>表格</span>
-      </div>
-      <div class="content">
-        <template>
-          <el-table
-            :data="tableData"
-            style="width: 100%"
-            highlight-current-row
-            @expand-change="toggleRowExpansion"
-            @row-click="rowClick"
-            row-key="id"
-            :expand-row-keys="expandList"
-          >
-            <el-table-column type="expand">
-              <template slot-scope="props">
-                <el-form label-position="left" inline class="demo-table-expand">
-                  <el-form-item label="商品名称">
-                    <span>{{ props.row.name }}</span>
-                  </el-form-item>
-                  <el-form-item label="所属店铺">
-                    <span>{{ props.row.shop }}</span>
-                  </el-form-item>
-                  <el-form-item label="商品 ID">
-                    <span>{{ props.row.id }}</span>
-                  </el-form-item>
-                  <el-form-item label="店铺 ID">
-                    <span>{{ props.row.shopId }}</span>
-                  </el-form-item>
-                  <el-form-item label="商品分类">
-                    <span>{{ props.row.category }}</span>
-                  </el-form-item>
-                  <el-form-item label="店铺地址">
-                    <span>{{ props.row.address }}</span>
-                  </el-form-item>
-                  <el-form-item label="商品描述">
-                    <span>{{ props.row.desc }}</span>
-                  </el-form-item>
-                </el-form>
-              </template>
-            </el-table-column>
-            <el-table-column label="商品 ID" prop="id"> </el-table-column>
-            <el-table-column label="商品名称" prop="name"> </el-table-column>
-            <el-table-column label="描述" prop="desc"> </el-table-column>
-            <el-table-column label="操作" prop="operate">
-              <template slot-scope="scope">
-                <el-button size="small" @click="queryDetail">查看</el-button>
-              </template>
-            </el-table-column>
-          </el-table>
-        </template>
-      </div>
-    </el-card>
-    <el-dialog
+  <div class="box-card" >
+    <div class="row-flag" :style="{right:getPosition.right + 'px',top:getPosition.top + 'px'}"></div>
+    <template>
+      <el-table
+        :data="tableData"
+        ref="singleTable"
+        style="width:100%"
+        :row-class-name="tableRowClassName"
+        highlight-current-row
+        @expand-change="toggleRowExpansion"
+        @row-click="rowClick"
+        row-key="id"
+        :header-cell-style="{
+          'text-align': 'center',
+          color: '#fff',
+          background: 'rgba(44, 51, 65, 0.788)'
+        }"
+        :expand-row-keys="expandList"
+      >
+        <el-table-column type="expand">
+          <template slot-scope="props">
+            <el-form label-position="left" inline class="demo-table-expand">
+              <el-form-item label="商品名称">
+                <span>{{ props.row.name }}</span>
+              </el-form-item>
+              <el-form-item label="所属店铺">
+                <span>{{ props.row.shop }}</span>
+              </el-form-item>
+              <el-form-item label="商品 ID">
+                <span>{{ props.row.id }}</span>
+              </el-form-item>
+              <el-form-item label="店铺 ID">
+                <span>{{ props.row.shopId }}</span>
+              </el-form-item>
+              <el-form-item label="商品分类">
+                <span>{{ props.row.category }}</span>
+              </el-form-item>
+              <el-form-item label="店铺地址">
+                <span>{{ props.row.address }}</span>
+              </el-form-item>
+              <el-form-item label="商品描述">
+                <span>{{ props.row.desc }}</span>
+              </el-form-item>
+            </el-form>
+          </template>
+        </el-table-column>
+        <el-table-column label="商品 ID" prop="id" show-overflow-tooltip align="center"> </el-table-column>
+        <el-table-column label="商品名称" prop="name" show-overflow-tooltip align="center"> </el-table-column>
+        <el-table-column label="描述" prop="desc" show-overflow-tooltip align="center"> </el-table-column>
+        <el-table-column label="操作" prop="operate" show-overflow-tooltip align="center">
+          <template slot-scope="scope">
+            <el-button size="small" @click="queryDetail">查看</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </template>
+      <el-dialog
       v-dialogDrag
       title="提示"
       :close-on-click-modal="false"  
@@ -117,10 +118,22 @@ export default {
           shopId: "10333"
         }
       ],
-      tableTitle: "整体"
+      tableTitle: "整体",
+      getPosition:{
+        right:20,
+        top:51
+      }
     };
   },
+  mounted () {
+    //默认选中第一行
+    console.log(this.$refs.singleTable.clientWidth)
+    this.setCurrent(this.tableData[0])
+  },
   methods: {
+    tableRowClassName({ row, rowIndex }) {
+        row.index = rowIndex;
+    },
     toggleRowExpansion(row, expand) {
       console.log(row, expand, this.expandList);
       if (expand.length) {
@@ -131,9 +144,13 @@ export default {
     },
     rowClick(row, column, even) {
       console.log(row, column, even);
+      this.$set(this.getPosition,'top',51 + row.index * 57)
     },
     queryDetail() {
       this.dialogVisible = true
+    },
+    setCurrent(row) {
+        this.$refs.singleTable.setCurrentRow(row);
     },
     addWaterMarker(str, parentNode, font, textColor) {
   // 水印文字，父元素，字体，文字颜色
@@ -210,13 +227,28 @@ export default {
 <style>
 /* 鼠标移入*/
 .el-table--enable-row-hover .el-table__body tr:hover > td {
-  background-color: #f19944 !important;
+  background-color: #9aa9c0af !important;
   color: #fff;
 }
 
 /* 鼠标选中*/
 .el-table__body tr.current-row > td {
-  background-color: #f19944 !important;
+  background-color: #9aa9c0af !important;
   color: #fff;
+}
+.box-card {
+  position: relative;
+  padding: 0;
+  width:80%;
+  margin: 30px auto;
+}
+.row-flag {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: url('../assets/1.jpg') no-repeat;
+  background-size: 100% 100%;
+  z-index: 10;
 }
 </style>
