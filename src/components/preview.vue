@@ -13,16 +13,16 @@ export default {
     data(){
         return {
             compName:'',
-            width:1280,
-            height:800,
+            width:1250,
+            height:520,
             style1:''
         }
     },
     mounted(){
         this.compName = this.$route.params.name
         console.log(this.$route)
-        // this.style1 = `top: 0px; left: 0px; width: ${this.width}px; height: ${this.height}px;`
-        this.style1 = `top: 0px; left: 0px;`
+        this.style1 = `top: 0px; left: 0px; width: ${this.width}px; height: ${this.height}px;`
+        // this.style1 = `top: 0px; left: 0px;`
     },
     methods:{
         addWaterMarker(str, parentNode, font, textColor) {

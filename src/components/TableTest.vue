@@ -239,8 +239,8 @@ export default {
 .box-card {
   position: relative;
   padding: 0;
-  width:80%;
-  margin: 30px auto;
+  width:100%;
+  /* margin: 30px auto; */
 }
 .row-flag {
   position: absolute;
