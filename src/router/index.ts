@@ -9,13 +9,14 @@ Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
   {
     path: '/',
+    redirect:'/about',
     name: 'Home',
     component: Home
   },
   {
     path: '/about',
     name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import('../views/About.vue')
   },{
     path: '/preview/:name',
     name: 'preview',
@@ -36,5 +37,9 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+// router.beforeEach((to, from,next) => {
+//   console.log("beforeEach",to,from)
+//   // next('/')
+// })
 
 export default router

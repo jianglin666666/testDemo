@@ -19,7 +19,6 @@ export default {
   name: 'About',
   components: {
     TableTest,
-    MyTest,
     EchartsTest
   },
   methods:{
