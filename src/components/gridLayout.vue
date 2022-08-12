@@ -23,7 +23,6 @@
     <div style="background:green;" class="test-box2">2</div>
   </div>
   <div style="width:300px;height:200px;background:yellow;" v-move:left="object" @click="changeColor">自定义指令</div>
-  <div>111</div>
 </div>
   <!-- <div style="width:600px;">
     <h1>Simple float example</h1>
